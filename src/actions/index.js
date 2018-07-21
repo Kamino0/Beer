@@ -12,6 +12,7 @@ export const fetchPrevPage = (query, page) => {
     page
   }
 }
+
 export const fetchNextPage = (query, page) => {
   return {
     type: 'FETCH_NEXT_PAGE',
@@ -19,6 +20,11 @@ export const fetchNextPage = (query, page) => {
     page
   }
 }
+
+export const fetchBeer = (id) => ({
+  type: 'FETCH_BEER',
+  id
+})
 
 export const requestList = (payload, query) => {
   return {
@@ -34,9 +40,15 @@ export const requestPrevPage = (payload) => {
     payload
   }
 }
+
 export const requestNextPage = (payload) => {
   return {
     type: 'REQUEST_NEXT_PAGE_SUCCESS',
     payload
   }
 }
+
+export const requestBeer = (payload) => ({
+  type: 'REQUEST_BEER_SUCCESS',
+  payload
+})

@@ -1,7 +1,7 @@
 import { takeLatest, put, call, all } from 'redux-saga/effects'
 
 import * as actions from '../actions'
-import { getBeerList } from '../API'
+import { getBeerList, getBeer } from '../API'
 
 const createQuery = (filters) => {
   let filtersQuery = ''
@@ -28,6 +28,11 @@ function* requestNextPage(action) {
   yield put(actions.requestNextPage(beerList))
 }
 
+function* requestBeer(action) {
+  const beer = yield call(getBeer, action.id)
+  yield put(actions.requestBeer(beer))
+}
+
 function* watchFetchList() {
   yield takeLatest('FETCH_LIST', requestList)
 }
@@ -39,10 +44,15 @@ function* watchFetchNextPage() {
   yield takeLatest('FETCH_NEXT_PAGE', requestNextPage)
 }
 
+function* watchFetchBeer() {
+  yield takeLatest('FETCH_BEER', requestBeer)
+}
+
 export default function* rootSaga() {
   yield all([
     call(watchFetchList),
     call(watchFetchPrevPage),
-    call(watchFetchNextPage)
+    call(watchFetchNextPage),
+    call(watchFetchBeer)
   ])
 }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchList } from '../actions'
@@ -10,21 +10,22 @@ import Pagination from './pagination'
 class Main extends Component {
 
   render() {
-    const { beerList, fetchList } = this.props
+    const { beerList, fetchList, isFetchingPage } = this.props
     return (
-      <Fragment>
-        <Filter fetchList={fetchList}/>
-        <Pagination position={'top'}/>
-        <List beerList={beerList} />
-        <Pagination position={'bottom'}/>
-      </Fragment>
+      <div className='content main-page'>
+        <Filter fetchList={fetchList} />
+        <Pagination position={'top'} />
+        <List beerList={beerList} isFetchingPage={isFetchingPage} />
+        <Pagination position={'bottom'} />
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    beerList: state.beer.beerList
+    beerList: state.beer.beerList,
+    isFetchingPage: state.beer.isFetchingPage
   }
 }
 
