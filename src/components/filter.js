@@ -22,18 +22,21 @@ class Filter extends Component {
   }
 
   componentDidMount() {
-  const { fetchList } = this.props
+  const { fetchList, page } = this.props
   fetchList({
     ...this.state
-  })
-  }
+    },
+    page
+  )}
 
-  fetchFilter = () => {
-  const { fetchList } = this.props
+  fetchFilter = (e) => {
+  e.preventDefault()
+  const { fetchList, page } = this.props
   fetchList({
     ...this.state
-  })
-  }
+    },
+    page
+  )}
 
   onChange = (e) => {
     const value = e.target.type === 'date' ? this.transformDate(e.target.value, true) : e.target.value
@@ -52,22 +55,22 @@ class Filter extends Component {
   render() {
 
     return (
-      <div className='filter'>
+      <form className='filter' onSubmit={this.fetchFilter}>
         <ul>
           <li>
             <label>Beer name</label><input type='text' name='beer_name' onChange={this.onChange} value={this.state.beer_name} />
           </li>
           <li>
-            <label title='Alcohol By Volume'>IBU from</label><input type='number' min='0' max='100' name='abv_gt' onChange={this.onChange} value={this.state.abv_gt}/>
+            <label title='Alcohol By Volume'>ABV from</label><input type='number' min='0' max='100' name='abv_gt' onChange={this.onChange} value={this.state.abv_gt}/>
           </li>
           <li>
-            <label title='Alcohol By Volume'>IBU to</label><input type='number' min='0' max='100' name='abv_lt' onChange={this.onChange} value={this.state.abv_lt}/>
+            <label title='Alcohol By Volume'>ABV to</label><input type='number' min='0' max='100' name='abv_lt' onChange={this.onChange} value={this.state.abv_lt}/>
           </li>
           <li>
-            <label title='International Bitterness Units'>IBV from</label><input type='number' min='0' max='100' name='ibu_gt' onChange={this.onChange} value={this.state.ibu_gt}/>
+            <label title='International Bitterness Units'>IBU from</label><input type='number' min='0' max='100' name='ibu_gt' onChange={this.onChange} value={this.state.ibu_gt}/>
           </li>
           <li>
-            <label title='International Bitterness Units'>IBV to</label><input type='number' min='0' max='100' name='ibu_lt' onChange={this.onChange} value={this.state.ibu_lt}/>
+            <label title='International Bitterness Units'>IBU to</label><input type='number' min='0' max='100' name='ibu_lt' onChange={this.onChange} value={this.state.ibu_lt}/>
           </li>
           <li>
             <label title='European Brewery Convention'>EBC from</label><input type='number' min='0' max='100' name='ebc_gt' onChange={this.onChange} value={this.state.ebc_gt}/>
@@ -93,9 +96,9 @@ class Filter extends Component {
           <li>
             <label>Food name</label><input type='text' name='food' onChange={this.onChange} value={this.state.food} />
           </li>
-          <button className='button' onClick={this.fetchFilter}>Filter</button>
+          <input type='submit' className='button' value='Filter' />
         </ul>
-      </div>
+      </form>
     )
   }
 }

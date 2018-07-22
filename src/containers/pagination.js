@@ -10,6 +10,7 @@ class Pagination extends Component {
     return (
       <div className={`pagination-${position} pagination`}>
         <button className='pagination__button button' onClick={() => fetchPrevPage(lastQuery, page - 1)}>Prev</button>
+        <div className='pagination__page-number'>Page: {page}</div>
         <button className='pagination__button button' onClick={() => fetchNextPage(lastQuery, page + 1)}>Next</button>
       </div>
     )

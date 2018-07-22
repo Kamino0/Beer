@@ -34,7 +34,8 @@ const beer = (state = initialBeerList, action) => {
         ...state,
         beerList: action.payload,
         lastQuery: action.query,
-        page: 1
+        // page: 1,
+        isFetching: false
       }
     case 'REQUEST_PREV_PAGE_SUCCESS':
       return {

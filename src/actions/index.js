@@ -1,7 +1,8 @@
-export const fetchList = (filters) => {
+export const fetchList = (filters, page) => {
   return {
     type: 'FETCH_LIST',
-    filters
+    filters,
+    page
   }
 }
 

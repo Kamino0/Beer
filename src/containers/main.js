@@ -10,24 +10,23 @@ import Pagination from './pagination'
 class Main extends Component {
 
   render() {
-    const { beerList, fetchList, isFetchingPage } = this.props
+    const { beerList, fetchList, isFetchingPage, page } = this.props
     return (
       <div className='content main-page'>
-        <Filter fetchList={fetchList} />
+        <Filter page={page} fetchList={fetchList} />
         <Pagination position={'top'} />
-        <List beerList={beerList} isFetchingPage={isFetchingPage} />
+        <List beerList={beerList}isFetchingPage={isFetchingPage} />
         <Pagination position={'bottom'} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    beerList: state.beer.beerList,
-    isFetchingPage: state.beer.isFetchingPage
-  }
-}
+const mapStateToProps = state => ({
+  beerList: state.beer.beerList,
+  isFetchingPage: state.beer.isFetchingPage,
+  page: state.beer.page
+})
 
 const mapDispatchToProps =  {
   fetchList

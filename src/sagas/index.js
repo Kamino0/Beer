@@ -15,7 +15,7 @@ const createQuery = (filters) => {
 
 function* requestList(action) {
   const query = createQuery(action.filters)
-  const beerList = yield call(getBeerList, query, 1)
+  const beerList = yield call(getBeerList, query, action.page)
   yield put(actions.requestList(beerList, query))
 }
 
