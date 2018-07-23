@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { fetchBeer } from '../actions'
 
+import Placeholder from '../components/placeholder'
+
 class Beer extends Component {
 
   componentDidMount() {
@@ -13,7 +15,7 @@ class Beer extends Component {
     const { beer, isFetchingBeer } = this.props
     return (
       <div className='content beer-page'>
-        {isFetchingBeer ? 'loading' :
+        {isFetchingBeer ? <Placeholder /> :
           <Fragment>
             <img className='beer-page__logo' src={beer.image_url} height='300' alt={`${beer.name} logo`} />
             <h2 className='beer-page__name'>{beer.name}</h2>

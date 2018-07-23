@@ -10,12 +10,12 @@ import Pagination from './pagination'
 class Main extends Component {
 
   render() {
-    const { beerList, fetchList, isFetchingPage, page } = this.props
+    const { beerList, fetchList, isFetching, isFetchingPage, page } = this.props
     return (
       <div className='content main-page'>
         <Filter page={page} fetchList={fetchList} />
         <Pagination position={'top'} />
-        <List beerList={beerList}isFetchingPage={isFetchingPage} />
+        <List beerList={beerList} isFetchingPage={isFetchingPage} isFetching={isFetching} />
         <Pagination position={'bottom'} />
       </div>
     )
@@ -24,6 +24,7 @@ class Main extends Component {
 
 const mapStateToProps = state => ({
   beerList: state.beer.beerList,
+  isFetching: state.beer.isFetching,
   isFetchingPage: state.beer.isFetchingPage,
   page: state.beer.page
 })
