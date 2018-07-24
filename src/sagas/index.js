@@ -14,23 +14,39 @@ const createQuery = (filters) => {
 }
 
 function* requestList(action) {
-  const query = createQuery(action.filters)
-  const beerList = yield call(getBeerList, query, action.page)
-  yield put(actions.requestList(beerList, query))
+  try {
+    const query = createQuery(action.filters)
+    const beerList = yield call(getBeerList, query, action.page)
+    yield put(actions.requestList(beerList, query))
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function* requestPrevPage(action) {
-  const beerList = yield call(getBeerList, action.query, action.page)
-  yield put(actions.requestPrevPage(beerList))
+  try {
+    const beerList = yield call(getBeerList, action.query, action.page)
+    yield put(actions.requestPrevPage(beerList))
+  } catch (error) {
+    console.error(error)
+  }
 }
 function* requestNextPage(action) {
-  const beerList = yield call(getBeerList, action.query, action.page)
-  yield put(actions.requestNextPage(beerList))
+  try {
+    const beerList = yield call(getBeerList, action.query, action.page)
+    yield put(actions.requestNextPage(beerList))
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function* requestBeer(action) {
-  const beer = yield call(getBeer, action.id)
-  yield put(actions.requestBeer(beer))
+  try {
+    const beer = yield call(getBeer, action.id)
+    yield put(actions.requestBeer(beer))
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function* watchFetchList() {

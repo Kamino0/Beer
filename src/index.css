@@ -34,6 +34,8 @@ a {
   height: 40px;
   width: 100px;
   text-transform: uppercase;
+  line-height: 40px;
+  text-align: center;
   font-weight: 600;
   color: #fff;
   background-color: var(--main-color);
@@ -175,6 +177,7 @@ a {
 
   .filter li {
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
     margin-bottom: 20px;
   }
@@ -261,6 +264,15 @@ a {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
+  }
+
+  .beer-card {
+    padding: 5px;
+  }
+
+  .beer-page__logo {
+    height: 200px;
+    margin: 5px;
   }
 }
 

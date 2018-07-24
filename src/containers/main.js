@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { fetchList } from '../actions'
 
@@ -22,11 +23,19 @@ class Main extends Component {
   }
 }
 
+Main.propTypes = {
+  beerList: PropTypes.array,
+  fetchList: PropTypes.func,
+  isFetching: PropTypes.bool,
+  isFetchingPage: PropTypes.bool,
+  page: PropTypes.number
+}
+
 const mapStateToProps = state => ({
-  beerList: state.beer.beerList,
-  isFetching: state.beer.isFetching,
-  isFetchingPage: state.beer.isFetchingPage,
-  page: state.beer.page
+  beerList: state.beers.beerList,
+  isFetching: state.beers.isFetching,
+  isFetchingPage: state.beers.isFetchingPage,
+  page: state.beers.page
 })
 
 const mapDispatchToProps =  {

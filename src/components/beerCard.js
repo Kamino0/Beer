@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const stringDelimiter = (str, limit) => {
   return str.split(' ').slice(0, limit).join(' ') + '...';
@@ -20,6 +21,10 @@ const BeerCard = ({
       </div>
     </Link>
   )
+}
+
+BeerCard.propTypes = {
+  beer: PropTypes.object
 }
 
 export default BeerCard

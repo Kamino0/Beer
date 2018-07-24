@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 
 class Filter extends Component {
   constructor(props) {
@@ -96,11 +97,16 @@ class Filter extends Component {
           <li>
             <label>Food name</label><input type='text' name='food' onChange={this.onChange} value={this.state.food} />
           </li>
-          <input type='submit' className='button' value='Filter' />
         </ul>
+        <input type='submit' className='button' value='Filter' />
       </form>
     )
   }
+}
+
+Filter.propTypes = {
+  fetchList: PropTypes.func,
+  page: PropTypes.number
 }
 
 export default Filter

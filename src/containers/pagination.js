@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { fetchPrevPage, fetchNextPage } from '../actions'
 
@@ -29,12 +30,18 @@ const Pagination = ({
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    lastQuery: state.beer.lastQuery,
-    page: state.beer.page
-  }
+Pagination.propTypes = {
+  lastQuery: PropTypes.string,
+  page: PropTypes.number,
+  fetchPrevPage: PropTypes.func,
+  fetchNextPage: PropTypes.func,
+  position: PropTypes.string
 }
+
+const mapStateToProps = state => ({
+  lastQuery: state.beers.lastQuery,
+  page: state.beers.page
+})
 
 const mapDispatchToProps = {
   fetchPrevPage, fetchNextPage

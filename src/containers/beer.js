@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import { fetchBeer } from '../actions'
 
@@ -17,8 +19,8 @@ class Beer extends Component {
       <div className='content beer-page'>
         {isFetchingBeer ? <Placeholder /> :
           <Fragment>
-            <img className='beer-page__logo' src={beer.image_url} height='300' alt={`${beer.name} logo`} />
             <h2 className='beer-page__name'>{beer.name}</h2>
+            <img className='beer-page__logo' src={beer.image_url} height='300' alt={`${beer.name} logo`} />
             <b className='beer-page__tagline'>{beer.tagline}</b>
             <p><span className='beer-page__property-name'>First brewed:</span> {beer.first_brewed}</p>
             <p><span className='beer-page__property-name'>Alcohol By Volume:</span> {beer.abv}</p>
@@ -31,11 +33,17 @@ class Beer extends Component {
             <p><span className='beer-page__property-name'>Attenuation level:</span> {beer.attenuation_level}</p>
             <p><span className='beer-page__property-name'>Brewers tips:</span> {beer.brewers_tips}</p>
             <p><span className='beer-page__property-name'>Description:</span> {beer.description}</p>
+            <Link to='/' className='button'>to Main</Link>
           </Fragment>
         }
       </div>
     )
   }
+}
+
+Beer.propTypes = {
+  beer: PropTypes.object,
+  isFetchingBeer: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
