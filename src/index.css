@@ -250,6 +250,11 @@ a {
       "pagination-top"
       "beerList"
       "pagination-bottom";
+    grid-row-gap: 0;
+  }
+
+  .filter {
+    margin-bottom: 30px;
   }
 
   .filter li {
@@ -258,6 +263,7 @@ a {
 
   .pagination {
     justify-content: space-between;
+    margin-bottom: 30px;
   }
 
   .beerList {
