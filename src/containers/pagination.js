@@ -31,10 +31,10 @@ const Pagination = ({
 }
 
 Pagination.propTypes = {
-  lastQuery: PropTypes.string,
-  page: PropTypes.number,
-  fetchPrevPage: PropTypes.func,
-  fetchNextPage: PropTypes.func,
+  lastQuery: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  fetchPrevPage: PropTypes.func.isRequired,
+  fetchNextPage: PropTypes.func.isRequired,
   position: PropTypes.string
 }
 

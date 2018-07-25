@@ -18,7 +18,7 @@ const List = ({
 }
 
 List.propTypes = {
-  beerList: PropTypes.array,
+  beerList: PropTypes.array.isRequired,
   isFetchingPage: PropTypes.bool,
   isFetching: PropTypes.bool,
 }

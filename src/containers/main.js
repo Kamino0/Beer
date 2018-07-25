@@ -24,11 +24,11 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  beerList: PropTypes.array,
-  fetchList: PropTypes.func,
+  beerList: PropTypes.array.isRequired,
+  fetchList: PropTypes.func.isRequired,
   isFetching: PropTypes.bool,
   isFetchingPage: PropTypes.bool,
-  page: PropTypes.number
+  page: PropTypes.number.isRequired
 }
 
 const mapStateToProps = state => ({

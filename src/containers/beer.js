@@ -42,8 +42,14 @@ class Beer extends Component {
 }
 
 Beer.propTypes = {
-  beer: PropTypes.object,
-  isFetchingBeer: PropTypes.bool
+  beer: PropTypes.shape({
+    id: PropTypes.number,
+    image_url: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string
+  }).isRequired,
+  isFetchingBeer: PropTypes.bool,
+  fetchBeer: PropTypes.func
 }
 
 const mapStateToProps = state => ({

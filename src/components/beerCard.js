@@ -2,9 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const stringDelimiter = (str, limit) => {
-  return str.split(' ').slice(0, limit).join(' ') + '...';
-}
+const stringDelimiter = (str, limit) =>
+  `${str.split(' ').slice(0, limit).join(' ')}...`
 
 const BeerCard = ({
   beer
@@ -24,7 +23,12 @@ const BeerCard = ({
 }
 
 BeerCard.propTypes = {
-  beer: PropTypes.object
+  beer: PropTypes.shape({
+    id: PropTypes.number,
+    image_url: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string
+  }).isRequired
 }
 
 export default BeerCard

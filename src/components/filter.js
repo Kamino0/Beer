@@ -105,8 +105,8 @@ class Filter extends Component {
 }
 
 Filter.propTypes = {
-  fetchList: PropTypes.func,
-  page: PropTypes.number
+  fetchList: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired
 }
 
 export default Filter
