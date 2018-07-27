@@ -11,6 +11,7 @@ class Beer extends Component {
 
   componentDidMount() {
     this.props.fetchBeer(this.props.match.params.id)
+    window.scrollTo(0,0)
   }
 
   render() {
