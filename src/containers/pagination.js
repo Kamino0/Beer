@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import { fetchPrevPage, fetchNextPage } from '../actions'
+import { Button } from '../styled'
 
 const Pagination = ({
   lastQuery,
@@ -22,11 +24,11 @@ const Pagination = ({
   }
 
   return (
-    <div className={`pagination-${position} pagination`}>
-      <button className='pagination__button button' onClick={handleClickPrev}>Prev</button>
-      <div className='pagination__page-number'>Page: {page}</div>
-      <button className='pagination__button button' onClick={handleClickNext}>Next</button>
-    </div>
+    <PaginationWpapper position={position}>
+      <Button onClick={handleClickPrev}>Prev</Button>
+      <div>Page: {page}</div>
+      <Button onClick={handleClickNext}>Next</Button>
+    </PaginationWpapper>
   )
 }
 
@@ -35,7 +37,7 @@ Pagination.propTypes = {
   page: PropTypes.number.isRequired,
   fetchPrevPage: PropTypes.func.isRequired,
   fetchNextPage: PropTypes.func.isRequired,
-  position: PropTypes.string
+  position: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -48,3 +50,22 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination)
+
+const PaginationWpapper = styled.div`
+  grid-area: ${props => `pagination-${props.position};`}
+  display: flex;
+  align-items: center;
+  padding: 0 11px;
+
+  & > * {
+    margin-right: 30px;
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+
+  @media (max-width: 800px) {
+    justify-content: space-between;
+  }
+`

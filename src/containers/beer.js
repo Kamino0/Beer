@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { fetchBeer } from '../actions'
-
-import Placeholder from '../components/placeholder'
+import Placeholder from '../placeholder'
+import { ContentWrapper, LinkButton } from '../styled'
 
 class Beer extends Component {
 
@@ -16,27 +16,26 @@ class Beer extends Component {
   render() {
     const { beer, isFetchingBeer } = this.props
     return (
-      <div className='content beer-page'>
+      <Wrapper>
         {isFetchingBeer ? <Placeholder /> :
-          <Fragment>
-            <h2 className='beer-page__name'>{beer.name}</h2>
-            <img className='beer-page__logo' src={beer.image_url} height='300' alt={`${beer.name} logo`} />
-            <b className='beer-page__tagline'>{beer.tagline}</b>
-            <p><span className='beer-page__property-name'>First brewed:</span> {beer.first_brewed}</p>
-            <p><span className='beer-page__property-name'>Alcohol By Volume:</span> {beer.abv}</p>
-            <p><span className='beer-page__property-name'>International Bittering Units:</span> {beer.ibu}</p>
-            <p><span className='beer-page__property-name'>Final gravity:</span> {beer.target_fg}</p>
-            <p><span className='beer-page__property-name'>Original gravity:</span> {beer.target_fg}</p>
-            <p><span className='beer-page__property-name'>European Brewery Convention:</span> {beer.ebc}</p>
-            <p><span className='beer-page__property-name'>Standard Reference Method:</span> {beer.srm}</p>
-            <p><span className='beer-page__property-name'>PH:</span> {beer.ph}</p>
-            <p><span className='beer-page__property-name'>Attenuation level:</span> {beer.attenuation_level}</p>
-            <p><span className='beer-page__property-name'>Brewers tips:</span> {beer.brewers_tips}</p>
-            <p><span className='beer-page__property-name'>Description:</span> {beer.description}</p>
-            <Link to='/' className='button'>to Main</Link>
-          </Fragment>
-        }
-      </div>
+        <Fragment>
+          <BeerName>{beer.name}</BeerName>
+          <BeerLogo src={beer.image_url} height='300' alt={`${beer.name} logo`} />
+          <Tagline>{beer.tagline}</Tagline>
+          <Property><PropertyName>First brewed:</PropertyName> {beer.first_brewed}</Property>
+          <Property><PropertyName>Alcohol By Volume:</PropertyName> {beer.abv}</Property>
+          <Property><PropertyName>International Bittering Units:</PropertyName> {beer.ibu}</Property>
+          <Property><PropertyName>Final gravity:</PropertyName> {beer.target_fg}</Property>
+          <Property><PropertyName>Original gravity:</PropertyName> {beer.target_fg}</Property>
+          <Property><PropertyName>European Brewery Convention:</PropertyName> {beer.ebc}</Property>
+          <Property><PropertyName>Standard Reference Method:</PropertyName> {beer.srm}</Property>
+          <Property><PropertyName>PH:</PropertyName> {beer.ph}</Property>
+          <Property><PropertyName>Attenuation level:</PropertyName> {beer.attenuation_level}</Property>
+          <Property><PropertyName>Brewers tips:</PropertyName> {beer.brewers_tips}</Property>
+          <Property><PropertyName>Description:</PropertyName> {beer.description}</Property>
+          <LinkButton to='/'>to Main</LinkButton>
+        </Fragment>}
+      </Wrapper>
     )
   }
 }
@@ -48,8 +47,8 @@ Beer.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string
   }).isRequired,
-  isFetchingBeer: PropTypes.bool,
-  fetchBeer: PropTypes.func
+  isFetchingBeer: PropTypes.bool.isRequired,
+  fetchBeer: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -62,3 +61,33 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Beer)
+
+const Wrapper = ContentWrapper.extend`
+  padding: 0 10px;
+  max-width: 1000px;
+`
+const BeerName = styled.h2`
+  margin-top: 0;
+  font-size: 50px;
+`
+const BeerLogo = styled.img`
+  float: right;
+  margin: 20px;
+
+  @media (max-width: 800px) {
+    height: 200px;
+    margin: 5px;
+  }
+`
+const Tagline = styled.b`
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+`
+const Property = styled.p`
+  font-size: 28px;
+`
+const PropertyName = styled.span`
+  font-size: 26px;
+  font-weight: 600;
+`

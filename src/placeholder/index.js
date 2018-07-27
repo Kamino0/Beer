@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './style.css'
+
 const Placeholder = () => {
   return (
     <div className="sk-cube-grid">

@@ -1,24 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const stringDelimiter = (str, limit) =>
-  `${str.split(' ').slice(0, limit).join(' ')}...`
+  `${str.substring(0, limit)}...`
 
 const BeerCard = ({
   beer
 }) => {
-  const description = stringDelimiter(beer.description, 30)
+  const description = stringDelimiter(beer.description, 140)
   return (
-    <Link to={`/beer/${beer.id}`} className='beer-card'>
-      <figure className='beer-card__image'>
+    <Wrapper to={`/beer/${beer.id}`}>
+      <ImageWrapper>
         <img src={beer.image_url} height='250' alt={`${beer.name} logo`}/>
-      </figure>
-      <div className='beer-card__info'>
-        <h4 className='beer-card__name'>{beer.name}</h4>
-        <p className='beer-card__description'>{description}</p>
-      </div>
-    </Link>
+      </ImageWrapper>
+      <CardInfo>
+        <BeerCardName>{beer.name}</BeerCardName>
+        <p>{description}</p>
+      </CardInfo>
+    </Wrapper>
   )
 }
 
@@ -32,3 +33,32 @@ BeerCard.propTypes = {
 }
 
 export default BeerCard
+
+const Wrapper = styled(Link)`
+  display: flex;
+  padding: 20px;
+  margin: 0 10px 20px 10px;
+  border: 1px solid #ccc;
+  transition: .2s all;
+
+  &:hover {
+    box-shadow: -5px 5px 0px 0px ${props => props.theme.mainColor};
+    transform: translate(5px, -5px);
+  }
+`
+const ImageWrapper = styled.figure`
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  width: 126px;
+`
+const CardInfo = styled.div`
+  padding: 0 20px;
+`
+const BeerCardName = styled.h4`
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-size: 24px;
+`
